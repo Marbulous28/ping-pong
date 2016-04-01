@@ -4,8 +4,15 @@ $(document).ready(function(){
   $("form#numberForm").submit(function(event){
     event.preventDefault();
 
+    var resultList = []
     var number = parseInt($("#number").val());
-    var output = pingPong(number);
+    var resultList = pingPong(number);
+    var length = resultList.length;
+
+    for (var i = 0; i < length; i += 1) {
+      $("#output").append(resultList[i] + "<br>");
+    }
+
   });
 });
 
@@ -13,15 +20,18 @@ $(document).ready(function(){
 // Buisness logic
 
 var pingPong = function(numLength){
+  var numList = [];
+
   for (var i = 1; i <= numLength; i += 1) {
     if (i % 3 === 0 && i % 5 === 0) {
-      alert("ping-pong");
+      numList.push("ping-pong");
     } else if (i % 3 === 0) {
-      alert("ping");
+      numList.push("ping");
     } else if (i % 5 === 0) {
-      alert("pong");
+      numList.push("pong");
     } else {
-      alert(i);
+      numList.push(i);
     }
   }
+  return numList
 }
